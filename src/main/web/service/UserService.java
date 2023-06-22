@@ -8,6 +8,5 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    void add(User user);
-
+    void saveUser(User user);
 }

@@ -5,14 +5,28 @@
     <title>Hello page</title>
 </head>
 <body>
-<h2>Main page</h2>
+<h2>All employees</h2>
+<br/>
 
-<tr th:each="user: ${users}">
-    <td th:text="${user.id}" />
-    <td th:text="${user.name}" />
-    <td th:text="${user.surname}" />
-    <td th:text="${user.salary}" />
-</tr>
+<table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Salary</th>
+    </tr>
+    <tr th:each="user: ${users}">
+        <td th:text="${user.id}"/>
+        <td th:text="${user.name}"/>
+        <td th:text="${user.surname}"/>
+        <td th:text="${user.salary}"/>
+    </tr>
+</table>
+
+<br/>
+
+<input type="button" value="Add"
+onclick="window.location.href = '/addNewUser'">
 
 </body>
 </html>

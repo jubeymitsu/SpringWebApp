@@ -15,15 +15,15 @@ public class UserServiceImpl implements UserService {
     UserDao userDao;
 
     @Override
-    @Transactional
-    public void add(User user) {
-        userDao.add(user);
-    }
-
-    @Override
     @Transactional(readOnly = true)
     public List<User> getAllUsers() {
         return userDao.getAllUsers();
+    }
+
+    @Override
+    @Transactional
+    public void saveUser(User user) {
+        userDao.save(user);
     }
 
 

@@ -61,7 +61,6 @@
       <artifactId>thymeleaf-spring5</artifactId>
       <version>3.1.1.RELEASE</version>
     </dependency>
-    <!-- https://mvnrepository.com/artifact/jakarta.servlet/jakarta.servlet-api -->
     <!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
     <dependency>
       <groupId>javax.servlet</groupId>
