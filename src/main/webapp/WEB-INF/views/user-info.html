@@ -8,7 +8,8 @@
 
 <h2>Employee info</h2>
 
-<form th:object="${user}" th:action="saveUser" th:method="post">
+<form th:object="${user}" th:action="@{/saveUser}" th:method="post">
+    <input type="hidden" th:field="*{id}">
     <label>Name: <input type="text" th:field="*{name}"/></label><br/><br/>
     <label>Surname: <input type="text" th:field="*{surname}"/></label><br/><br/>
     <label>Salary: <input type="text" th:field="*{salary}"/></label><br/><br/>
