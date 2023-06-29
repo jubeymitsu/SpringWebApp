@@ -1,6 +1,15 @@
 package main.web.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.PositiveOrZero;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -12,10 +21,16 @@ public class User {
     private int id;
 
     @Column(name = "name")
+    @NotBlank
+    @Size(min = 2, max = 30)
     private String name;
     @Column(name = "surname")
+    @NotBlank
+    @Size(min = 2, max = 30)
     private String surname;
     @Column(name = "salary")
+    @NotNull
+    @PositiveOrZero
     private int salary;
 
     public User() {

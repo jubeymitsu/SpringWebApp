@@ -10,28 +10,30 @@
 
 
 <div th:if="${users.size() != 0}">
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Surname</th>
-        <th>Salary</th>
-        <th>Operations</th>
-    </tr>
-    <tr th:each="user: ${users}">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Surname</th>
+            <th>Salary</th>
+            <th>Operations</th>
+        </tr>
+        <tr th:each="user: ${users}">
 
-        <td th:text="${user.id}"/>
-        <td th:text="${user.name}"/>
-        <td th:text="${user.surname}"/>
-        <td th:text="${user.salary}"/>
-        <td>
-            <button th:onclick="'window.location.href = \'' + @{/updateInfo/{id}(id=${user.id})} + '\''">Update</button>
-            <button th:onclick="'window.location.href = \'' + @{/deleteUser/{id}(id=${user.id})} + '\''">Delete</button>
-        </td>
-    </tr>
-</table>
+            <td th:text="${user.id}"/>
+            <td th:text="${user.name}"/>
+            <td th:text="${user.surname}"/>
+            <td th:text="${user.salary}"/>
+            <td>
+                <button th:onclick="'window.location.href = \'' + @{/updateInfo/{id}(id=${user.id})} + '\''">Update
+                </button>
+                <button th:onclick="'window.location.href = \'' + @{/deleteUser/{id}(id=${user.id})} + '\''">Delete
+                </button>
+            </td>
+        </tr>
+    </table>
 
-<br/>
+    <br/>
 </div>
 
 <input type="button" value="Add"

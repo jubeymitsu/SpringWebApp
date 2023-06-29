@@ -5,49 +5,50 @@ import main.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-public class HelloController {
+public class UserController {
 
     @Autowired
-    UserService userService;
+    private UserService userService;
 
-    @RequestMapping(value = "/",
-            method = RequestMethod.GET)
+    @GetMapping("/")
     public String page(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
         return "main";
     }
 
-    @RequestMapping(value = "/addNewUser"
-            , method = RequestMethod.GET)
-    public String addNewUser(Model model) {
-        User user = new User();
-        model.addAttribute("user", user);
+    @GetMapping("/addNewUser")
+    public String addNewUser(@ModelAttribute User user) {
         return "user-info";
     }
 
-    @RequestMapping(value = "/saveUser", method = RequestMethod.POST)
-    public String saveUser(@ModelAttribute User user) {
+    @PostMapping( "/saveUser")
+    public String saveUser(@Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()){
+            return "user-info";
+        }
         userService.saveUser(user);
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/updateInfo/{id}")
+    @GetMapping(value = "/updateInfo/{id}")
     public String updateUser(@PathVariable int id, Model model) {
         User user = userService.getUser(id);
         model.addAttribute("user", user);
         return "user-info";
     }
 
-    @RequestMapping(value = "/deleteUser/{id}")
+    @GetMapping(value = "/deleteUser/{id}")
     public String deleteUser(@PathVariable int id) {
         userService.deleteById(id);
         return "redirect:/";
